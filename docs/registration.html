@@ -10,7 +10,13 @@
         margin: 0 auto;
         padding: 0;
         max-width: 1230px;
+        font-size: 16px;
       }
+
+      h1 {
+        font-size: 32px;
+      }
+
       form {
         padding: 15px;
         text-align: center;
@@ -23,21 +29,28 @@
         width: 100%;
       }
       .input-container label {
-        line-height: 1.5rem;
-        font-size: 0.9375rem;
+        line-height: 24px;
+        font-size: 16px;
         display: block;
         position: relative;
-        padding: 1.125rem 0 0.25rem;
+        padding: 18px 0 4px;
         text-align: left;
       }
+
       .input-container input {
         font-weight: 400;
-        line-height: 1.375rem;
-        font-size: 1rem;
+        line-height: 22px;
+        font-size: 16px;
         border-radius: 4px;
-        padding: 0.625rem;
+        padding: 10px;
         width: 100%;
         box-sizing: border-box;
+        border: 1px solid #ddd;
+        outline: none;
+      }
+
+      .input-container input:focus {
+        border-color: #000;
       }
 
       button {
@@ -48,28 +61,24 @@
 
       button.primary {
         border: 1px solid #02bd9c;
-        box-shadow: inset 0 0 0.0625rem 0 #02bd9c, 0 0 0.0625rem 0 #02bd9c;
         background-color: #02bd9c;
         color: #fff;
       }
 
       button.primary:hover {
         border: 1px solid #05d6ae;
-        box-shadow: inset 0 0 0.0625rem 0 #05d6ae, 0 0 0.0625rem 0 #05d6ae;
         background-color: #05d6ae;
       }
 
       button.secondary {
         border: 1px solid #000;
-        box-shadow: inset 0 0 0.0625rem 0 #000, 0 0 0.0625rem 0 #000;
         background-color: #fff;
         color: #000;
       }
 
       button.secondary:hover {
-        border: 1px solid #000;
-        box-shadow: inset 0 0 0.0625rem 0 #000, 0 0 0.0625rem 0 #000;
-        background-color: #000;
+        border: 1px solid rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.7);
         color: #fff;
       }
 
@@ -136,7 +145,7 @@
       </div>
       <div class="button-container">
         <button id="register" type="button" class="primary">Register</button>
-        <button type="button" class="secondary">Cancel</button>
+        <button id="cancel" type="button" class="secondary">Cancel</button>
       </div>
     </form>
     <script>
@@ -213,6 +222,10 @@
           .forEach((el) => (el.innerHTML = ""));
       }
 
+      function onCancelClick() {
+        window.location.pathname = "/";
+      }
+
       function onRegisterClick() {
         var passwordErrors = !document.getElementById("password").value
           ? ["Password required"]
@@ -256,6 +269,9 @@
       document
         .getElementById("register")
         .addEventListener("click", onRegisterClick);
+      document
+        .getElementById("cancel")
+        .addEventListener("click", onCancelClick);
       addErrorHandler("username", "username-errors", getUsernameErrors);
       addErrorHandler("email", "email-errors", getEmailErrors);
       addErrorHandler("password", "password-errors", getPasswordErrors);

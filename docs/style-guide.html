@@ -4,8 +4,118 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Style guide</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1230px;
+        font-size: 16px;
+      }
+      button {
+        border-radius: 10px;
+        padding: 10px;
+        outline: none;
+      }
+
+      button.primary {
+        border: 1px solid #02bd9c;
+        background-color: #02bd9c;
+        color: #fff;
+      }
+
+      button.primary:hover {
+        border: 1px solid #05d6ae;
+        background-color: #05d6ae;
+      }
+
+      button.secondary {
+        border: 1px solid #000;
+        background-color: #fff;
+        color: #000;
+      }
+
+      button.secondary:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+      }
+
+      p {
+        margin: 20px 0;
+      }
+
+      a {
+        font-weight: 500;
+        padding: 0;
+        color: #02bd9c;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #05d6ae;
+        text-decoration: underline;
+      }
+      .style-guide {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      .style-guide > * {
+        border-bottom: 1px solid black;
+        box-sizing: border-box;
+        padding: 10px;
+        height: 100%;
+      }
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    </style>
   </head>
   <body>
-    <div>Style guide:</div>
+    <h1 style="text-align: center">Style guide</h1>
+    <div class="style-guide">
+      <div style="font-weight: bold">Requirement</div>
+      <div style="font-weight: bold">Example</div>
+      <div>font-size - 16px;</div>
+      <div>Some text for example</div>
+      <div>h1 - font-size: 32px</div>
+      <h1>Header 1 Example</h1>
+      <div>h2 - font-size: 28px;</div>
+      <h2>Header 2 Example</h2>
+      <div>paragraph margin top/bottom - 20px;</div>
+      <div>
+        <p>paragraph example 1</p>
+        <p>paragraph example 2</p>
+      </div>
+      <div>
+        <p>
+          Button background color <span style="color: #02bd9c">#02bd9c</span>
+        </p>
+        <p>Button color - white(#fff)</p>
+        <p>
+          Button background color on hover
+          <span style="color: #05d6ae">#05d6ae</span>
+        </p>
+      </div>
+      <div><button class="primary">primary button</button></div>
+      <div>
+        <p>Button background color white(#fff)</p>
+        <p>Button color - black(#000)</p>
+        <p>Button background color on hover - black(#000)</p>
+        <p>Button color on hover - white(#fff)</p>
+      </div>
+      <div><button class="secondary">secondary button</button></div>
+      <div>
+        <p>Link color <span style="color: #02bd9c">#02bd9c</span></p>
+        <p>Link color on hover - <span style="color: #05d6ae">#05d6ae</span></p>
+        <p>Link decoration on hover - underline</p>
+      </div>
+      <div><a href="#">Link</a></div>
+    </div>
   </body>
 </html>
