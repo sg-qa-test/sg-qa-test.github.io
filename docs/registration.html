@@ -4,21 +4,236 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      form {
+        padding: 15px;
+        text-align: center;
+        width: 300px;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+      .input-container {
+        position: relative;
+        width: 100%;
+      }
+      .input-container label {
+        line-height: 1.5rem;
+        font-size: 0.9375rem;
+        display: block;
+        position: relative;
+        padding: 1.125rem 0 0.25rem;
+        text-align: left;
+      }
+      .input-container input {
+        font-weight: 400;
+        line-height: 1.375rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        padding: 0.625rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button {
+        border-radius: 5px;
+        padding: 5px;
+        outline: none;
+      }
+
+      #message.error {
+        color: red;
+      }
+
+      #message.success {
+        color: green;
+      }
+
+      .errors {
+        color: red;
+        text-align: left;
+      }
+
+      .errors:empty,
+      #message:empty {
+        display: none;
+      }
+
+      .button-container {
+        margin: 20px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 15px;
+      }
+
+      @media (max-width: 1024px) {
+        form {
+          width: 100%;
+          margin: 0;
+        }
+
+        .button-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
     <form>
-      <label>
-        Username:
-        <input type="text" />
-      </label>
-      <button id="test" type="button">Register</button>
-      <button>Cancel</button>
+      <div id="message"></div>
+      <div class="input-container">
+        <label>Username </label>
+        <input id="username" type="text" />
+        <div id="username-errors" class="errors"></div>
+      </div>
+      <div class="input-container">
+        <label>Email </label>
+        <input id="email" type="text" />
+        <div id="email-errors" class="errors"></div>
+      </div>
+      <div class="input-container">
+        <label>Password </label>
+        <input id="password" type="password" />
+        <div id="password-errors" class="errors"></div>
+      </div>
+      <div class="input-container">
+        <label>Confirm password </label>
+        <input id="confirm-password" type="password" />
+        <div id="confirm-password-errors" class="errors"></div>
+      </div>
+      <div class="button-container">
+        <button id="register" type="button">Register</button>
+        <button type="button">Cancel</button>
+      </div>
     </form>
     <script>
-      function click() {
-        console.log("click");
+      function getEmailErrors() {
+        var email = document.getElementById("email").value;
+        var regex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+        if (!email) return ["Email required"];
+        if (!regex.test(email)) return ["Invalid email"];
+        return [];
       }
-      document.getElementById("test").addEventListener("click", click);
+
+      function getUsernameErrors() {
+        var username = document.getElementById("username").value;
+        var errors = [];
+        if (!username) {
+          return ["Username required"];
+        }
+
+        if (!/^[A-Za-z]/.test(username)) {
+          errors.push("Username must start with letter");
+        }
+
+        if (!/^([A-Za-z0-9])\w*$/.test(username)) {
+          errors.push("Username should contains only letters and numbers");
+        }
+
+        if (username.length < 6) {
+          errors.push("Username must be a least 6 symbols long");
+        }
+
+        return errors;
+      }
+
+      function getPasswordErrors() {
+        var password = document.getElementById("password").value;
+        var errors = [];
+        if (!password) {
+          return ["Password required"];
+        }
+
+        if (!/^([A-Za-z0-9])\w*$/.test(password)) {
+          errors.push("Password should contains only letters and numbers");
+        }
+
+        if (password.length < 8) {
+          errors.push("Username must be a least 8 symbols long");
+        }
+
+        return errors;
+      }
+
+      function getConfirmPasswordErrors() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm-password").value;
+        if (!confirmPassword) {
+          return ["Confirm password required"];
+        }
+
+        if (confirmPassword !== password) {
+          return ["Confirm password should be the same as password"];
+        }
+
+        return [];
+      }
+
+      function clearForm() {
+        document.getElementById("username").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("confirm-password").value = "";
+        document.getElementById("message").innerHTML = "";
+        document
+          .querySelectorAll(".errors")
+          .forEach((el) => (el.innerHTML = ""));
+      }
+
+      function onRegisterClick() {
+        var passwordErrors = !document.getElementById("password").value
+          ? ["Password required"]
+          : [];
+
+        var formErrors = [
+          ...getUsernameErrors(),
+          ...getEmailErrors(),
+          ...passwordErrors,
+          ...getConfirmPasswordErrors(),
+        ];
+
+        var message = document.getElementById("message");
+        message.innerHTML = "";
+
+        if (formErrors.length) {
+          message.className = "error";
+          message.innerText = formErrors[0];
+        } else {
+          clearForm();
+          message.className = "success";
+          message.innerText = "Account successfully created";
+        }
+      }
+
+      function addErrorHandler(inputId, errorsContainerId, validationFunction) {
+        document.getElementById(inputId).addEventListener("input", function () {
+          var errors = validationFunction();
+          var errorsContainer = document.getElementById(errorsContainerId);
+          errorsContainer.innerHTML = "";
+          if (errors.length) {
+            errors.forEach((error) => {
+              var errorContainer = document.createElement("div");
+              errorContainer.innerText = error;
+              errorsContainer.appendChild(errorContainer);
+            });
+          }
+        });
+      }
+
+      document
+        .getElementById("register")
+        .addEventListener("click", onRegisterClick);
+      addErrorHandler("username", "username-errors", getUsernameErrors);
+      addErrorHandler("email", "email-errors", getEmailErrors);
+      addErrorHandler("password", "password-errors", getPasswordErrors);
+      addErrorHandler(
+        "confirm-password",
+        "confirm-password-errors",
+        getConfirmPasswordErrors
+      );
     </script>
   </body>
 </html>
