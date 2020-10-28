@@ -6,8 +6,10 @@
     <title>Registration</title>
     <style>
       body {
-        margin: 0;
+        font-family: sans-serif;
+        margin: 0 auto;
         padding: 0;
+        max-width: 1230px;
       }
       form {
         padding: 15px;
@@ -39,9 +41,36 @@
       }
 
       button {
-        border-radius: 5px;
-        padding: 5px;
+        border-radius: 10px;
+        padding: 10px;
         outline: none;
+      }
+
+      button.primary {
+        border: 1px solid #02bd9c;
+        box-shadow: inset 0 0 0.0625rem 0 #02bd9c, 0 0 0.0625rem 0 #02bd9c;
+        background-color: #02bd9c;
+        color: #fff;
+      }
+
+      button.primary:hover {
+        border: 1px solid #05d6ae;
+        box-shadow: inset 0 0 0.0625rem 0 #05d6ae, 0 0 0.0625rem 0 #05d6ae;
+        background-color: #05d6ae;
+      }
+
+      button.secondary {
+        border: 1px solid #000;
+        box-shadow: inset 0 0 0.0625rem 0 #000, 0 0 0.0625rem 0 #000;
+        background-color: #fff;
+        color: #000;
+      }
+
+      button.secondary:hover {
+        border: 1px solid #000;
+        box-shadow: inset 0 0 0.0625rem 0 #000, 0 0 0.0625rem 0 #000;
+        background-color: #000;
+        color: #fff;
       }
 
       #message.error {
@@ -83,6 +112,7 @@
   </head>
   <body>
     <form>
+      <h1>Registration</h1>
       <div id="message"></div>
       <div class="input-container">
         <label>Username </label>
@@ -105,8 +135,8 @@
         <div id="confirm-password-errors" class="errors"></div>
       </div>
       <div class="button-container">
-        <button id="register" type="button">Register</button>
-        <button type="button">Cancel</button>
+        <button id="register" type="button" class="primary">Register</button>
+        <button type="button" class="secondary">Cancel</button>
       </div>
     </form>
     <script>
