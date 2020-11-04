@@ -11,7 +11,7 @@ It is supposed to be a fun, no pressure exercise. We encourage you to relax, be 
 The task is split into 3 parts, outlined below, but there are some common requirements for all 3 stages:
 
 1. All the pages should follow our <a href="/style-guide.html" target="_blank">Global Style Guide</a>
-2. Issues don't need to be explicitly writted down/recorded. Simply pointing them out will suffice.
+2. Issues don't need to be explicitly written down/recorded. Simply pointing them out will suffice.
 3. Additional credit will be given for pointing out/flagging design issues/glitches/usability problems throughout the exercise.
 
 ---
@@ -34,13 +34,13 @@ This page contains information regarding our mobile applications, along with 2 i
 The icons should:
 
 1. Contain the relevant Store Icons
-2. Link to the relevant app store pages, with links to be opened in a new tab.
+2. Link to the relevant app store pages
 
 ---
 
 ### **Task 3** - <a href="/registration" target="_blank">Registration page</a>
 
-This page allows users to regsiter with our system. The page should:
+This page allows users to register with our system. The page should:
 
 1. Contain 4 input fields: `username`, `email`, `password` & `confirm password`
 2. Contain 2 Buttons: `Register` and `Cancel`
@@ -57,29 +57,31 @@ This page allows users to regsiter with our system. The page should:
 3. Action buttons should be horizontally aligned, on a the same row with 15px gap between them.
 4. `Register` should be the primary button
 5. `Cancel` button should be the secondary button
-   <img src="images/desktop-design.png" />
+
+<img src="images/desktop-design.png" />
 
 #### **Mobile**
 
 1. The label should on the top of the inputs
 2. Inputs should be fill 100% of the remaining page width, after the global page spacing has been included.
-3. Action buttons should be on seprate rows, with 15px gap between them.
+3. Action buttons should be on separate rows, with 15px gap between them.
 4. `Register` should be the primary button
 5. `Cancel` button should be the secondary button
-   <img src="images/mobile-design.png" />
+
+<img src="images/mobile-design.png" />
 
 ---
 
 #### Validation Rules
 
 1. Validation messages should appear under the relevant input in red color
-2. Vaidation messages should only appear when the user changes the field value
+2. Validation messages should only appear when the user changes the field value
 3. Validation rules for each input are below:
 
 Username:
 
 - Required (must not be empty)
-- Must start with letter</li>
+- Must start with letter
 - Should contains only letters or numbers
 - Minimum length of 6 symbols
 
